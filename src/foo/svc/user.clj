@@ -32,7 +32,7 @@
                username (get-value z :username)
                password (get-value z :password)
                email (get-value z :email)]
-           (str "username " username " password " password " email " email)))
+         (str "new user using xml:\n\tusername=" username "\n\tpassword=" password "\n\temail=" email)))
 
 
 
