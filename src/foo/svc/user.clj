@@ -36,6 +36,9 @@
                email (get-value z :email)]
          (str "new user using xml:\n\tusername=" username "\n\tpassword=" password "\n\temail=" email)))
 
+(defpage [:get "/x"] []
+         (str (:servlet-request ring-request)))
+
 (defpage [:get "/app"] []
          (let [ctx (app-ctx (ring-request))]
            (.getBean ctx "string-from-spring")))
