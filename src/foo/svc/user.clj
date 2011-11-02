@@ -1,8 +1,10 @@
 (ns foo.svc.user
   (:require [noir.response :as resp])
   (:use [noir.core :only (defpage)]
+        [noir.request :only (ring-request)]
         [clojure.contrib.str-utils :only (str-join)]
         [util.xml-utils :only (get-zipper get-value)]
+        [util.spring-utils :only (app-ctx)]
         hiccup.core))
 
 ;; get list of user
@@ -34,6 +36,7 @@
                email (get-value z :email)]
          (str "new user using xml:\n\tusername=" username "\n\tpassword=" password "\n\temail=" email)))
 
-
-
+(defpage [:get "/app"] []
+         (let [ctx (app-ctx (ring-request))]
+           (.getBean ctx "string-from-spring")))
 
